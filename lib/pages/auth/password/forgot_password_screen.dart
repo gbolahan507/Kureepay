@@ -16,6 +16,12 @@ class _Forgot_password_screenState extends State<Forgot_password_screen> {
 
   final _formKey = new GlobalKey<FormState>();
 
+    bool _passwords = true;
+
+  void pass(){
+    _passwords = !_passwords;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +52,14 @@ class _Forgot_password_screenState extends State<Forgot_password_screen> {
                      labelweight: FontWeight.w400,
                      prefixIcon: Image.asset('images/profile.png'),
                      controller: _email,
+                     suffixIcon: InkWell(
+                       onTap: (){
+                         setState(() {
+                           pass();
+                         });
+                       },
+                       child: Image.asset('images/eye.png')),
+                     obsecuretext: _passwords,
                      validator: (value) => value.isEmpty ? 'enter user email or phone number' : null
                    ),
                    SizedBox(height: 20,),

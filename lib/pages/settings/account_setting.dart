@@ -109,7 +109,7 @@ class _Account_settingState extends State<Account_setting> {
             SizedBox(height: 50,),
 
                    ButtonFilled(
-                     text: 'Login',
+                     text: 'Save',
                      color: Color(0xFF006577),
                      textColor: Colors.white,
                      action: (){

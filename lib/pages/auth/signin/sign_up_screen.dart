@@ -13,7 +13,18 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
 
       var _email = TextEditingController();
     var _password = TextEditingController();
+    var _name = TextEditingController();
+    var _number = TextEditingController();
+    var _id = TextEditingController();
+
+
   final _formKey = new GlobalKey<FormState>();
+
+   bool _passwords = true;
+
+  void pass(){
+    _passwords = !_passwords;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +36,11 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
           child: ListView(
             children: <Widget>[
               Container(
-                // color: Colors.blue,
                 padding: EdgeInsets.fromLTRB(0, 115, 0, 60),
                 child: Apptext(text: 'Kurepay', color: Colors.white, fontweight: FontWeight.bold, fontsize: 24.0, allignment: Alignment.center, )
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 43),
-                // color: Colors.red,
                 child: Column(
                  children: <Widget>[
                    CustomInput(
@@ -39,7 +48,7 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
                      labelfontsize: 15.0,
                      labelweight: FontWeight.w400,
                      prefixIcon: Image.asset('images/profile.png'),
-                     controller: _email,
+                     controller: _name,
                      validator: (value) => value.isEmpty ? 'enter user email or phone number' : null
                    ),
                    SizedBox(height: 20,),
@@ -48,7 +57,7 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
                       labelfontsize: 15.0,
                      labelweight: FontWeight.w400,
                      prefixIcon: Image.asset('images/email.png'),
-                     controller: _password,
+                     controller: _email,
                      validator: (value) => value.isEmpty ? 'enter your secret pin' : null
                    ),
                    SizedBox(height: 20,),
@@ -58,7 +67,7 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
                      labelfontsize: 15.0,
                      labelweight: FontWeight.w400,
                      prefixIcon: Image.asset('images/calling.png'),
-                     controller: _email,
+                     controller: _number,
                      validator: (value) => value.isEmpty ? 'enter user email or phone number' : null
                    ),
                      SizedBox(height: 20,),
@@ -67,7 +76,15 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
                      labelfontsize: 15.0,
                      labelweight: FontWeight.w400,
                      prefixIcon: Image.asset('images/lock.png'),
-                     controller: _email,
+                     controller: _password,
+                      suffixIcon: InkWell(
+                       onTap: (){
+                         setState(() {
+                           pass();
+                         });
+                       },
+                       child: Image.asset('images/eye.png')),
+                     obsecuretext: _passwords,
                      validator: (value) => value.isEmpty ? 'enter user email or phone number' : null
                    ),
                      SizedBox(height: 20,),
@@ -77,8 +94,7 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
                       labelfontsize: 15.0,
                      labelweight: FontWeight.w400,
                      prefixIcon: Image.asset('images/id.png'),
-                     suffixIcon: Image.asset('images/eye.png'),
-                     controller: _password,
+                     controller: _id,
                      validator: (value) => value.isEmpty ? 'enter your secret pin' : null
                    ),
                    
@@ -112,6 +128,8 @@ class _Sign_up_screenState extends State<Sign_up_screen> {
                      action: (){
                        if(_formKey.currentState.validate()){
                          print('hello');
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => Account_settings_screen()));
+
                        }
                      },
                    ),

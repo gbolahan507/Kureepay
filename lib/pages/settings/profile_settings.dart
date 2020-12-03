@@ -79,7 +79,7 @@ class _Provile_settingState extends State<Provile_setting> {
             SizedBox(height: 50,),
 
                    ButtonFilled(
-                     text: 'Login',
+                     text: 'Save',
                      color: Color(0xFF006577),
                      textColor: Colors.white,
                      action: (){

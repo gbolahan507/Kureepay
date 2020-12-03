@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-      home:  Fund_account_screen(),
+      home:  Splash_screen(),
     );
   }
 }

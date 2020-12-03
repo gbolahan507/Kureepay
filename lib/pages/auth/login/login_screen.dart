@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kurepay/export/atom_export.dart';
+import 'package:kurepay/export/others_export.dart';
 import 'package:kurepay/widget/atom/h1.dart';
 
 
@@ -15,6 +16,12 @@ class _Login_screenState extends State<Login_screen> {
 
   final _formKey = new GlobalKey<FormState>();
 
+  bool _passwords = true;
+
+  void pass(){
+    _passwords = !_passwords;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +32,11 @@ class _Login_screenState extends State<Login_screen> {
           child: ListView(
             children: <Widget>[
               Container(
-                // color: Colors.blue,
                 padding: EdgeInsets.symmetric(vertical: 115),
                 child: Apptext(text: 'Kurepay', color: Colors.white, fontweight: FontWeight.bold, fontsize: 24.0, allignment: Alignment.center, )
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 43),
-                // color: Colors.red,
                 child: Column(
                  children: <Widget>[
                    CustomInput(
@@ -48,7 +53,14 @@ class _Login_screenState extends State<Login_screen> {
                       labelfontsize: 15.0,
                      labelweight: FontWeight.w400,
                      prefixIcon: Image.asset('images/lock.png'),
-                     suffixIcon: Image.asset('images/eye.png'),
+                     suffixIcon: InkWell(
+                       onTap: (){
+                         setState(() {
+                           pass();
+                         });
+                       },
+                       child: Image.asset('images/eye.png')),
+                     obsecuretext: _passwords,
 
 
                      controller: _password,
@@ -58,7 +70,10 @@ class _Login_screenState extends State<Login_screen> {
                    SizedBox(height: 30,),
 
                    InkWell(
-                     onTap: () => print('forgot password'),
+                     onTap: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => Forgot_password_screen()));
+
+                     },
                                       child: Apptext( fontsize: 14.0,
                        text: 'Forgot password', allignment: Alignment.centerRight,
                      ),
